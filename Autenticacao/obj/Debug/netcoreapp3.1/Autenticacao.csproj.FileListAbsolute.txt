@@ -1,4 +1,0 @@
-C:\MeuControle\meucontrole_api\Autenticacao\bin\Debug\netcoreapp3.1\Autenticacao.exe
-C:\MeuControle\meucontrole_api\Autenticacao\obj\Debug\netcoreapp3.1\Autenticacao.csprojAssemblyReference.cache
-C:\MeuControle\meucontrole_api\Autenticacao\obj\Debug\netcoreapp3.1\Autenticacao.AssemblyInfoInputs.cache
-C:\MeuControle\meucontrole_api\Autenticacao\obj\Debug\netcoreapp3.1\Autenticacao.AssemblyInfo.cs
