@@ -6,4 +6,4 @@
 - Arquitetura CQRS;
 - EntityFramework Core;
 
-[https://github.com/GustavoRodrigues94/meucontrole]: Veja o Frontend também
+[https://github.com/GustavoRodrigues94/meucontrole](Veja o Frontend aqui)
