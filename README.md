@@ -5,5 +5,6 @@
 - JWT para disponibilização de tokens;
 - Arquitetura CQRS;
 - EntityFramework Core;
+- SQLServer.
 
 [Veja o Frontend aqui](https://github.com/GustavoRodrigues94/meucontrole)
