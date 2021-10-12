@@ -16,25 +16,8 @@ namespace MeuControle.Infra.Contextos
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            MapearUsuario(modelBuilder);
-            MapearPlanoConta(modelBuilder);
-            MapearLancamentoConta(modelBuilder);
-        }
-
-        private static void MapearUsuario(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Usuario>().HasKey(x => x.Codigo);
-            modelBuilder.Entity<Usuario>().Property(x => x.Nome).HasMaxLength(200).HasColumnType("varchar(200)");
-            modelBuilder.Entity<Usuario>().Property(x => x.Email).HasMaxLength(300).HasColumnType("varchar(300)");
-            modelBuilder.Entity<Usuario>().Property(x => x.Senha).HasMaxLength(50).HasColumnType("varchar(50)");
-        }
-
-        private static void MapearPlanoConta(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<PlanoConta>().HasKey(x => x.Codigo);
-            modelBuilder.Entity<PlanoConta>().Property(x => x.Nome).HasMaxLength(200).HasColumnType("varchar(200)");
-            modelBuilder.Entity<PlanoConta>().Property(x => x.Operacao).HasColumnType("varchar(1)");
-            modelBuilder.Entity<PlanoConta>().HasIndex(x => x.CodigoUsuario);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ContextoDados).Assembly);
         }
 
         private static void MapearLancamentoConta(ModelBuilder modelBuilder)

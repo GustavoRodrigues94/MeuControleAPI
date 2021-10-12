@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using MeuControle.Dominio.Entidades;
 using MeuControle.Dominio.Repositorios;
 using MeuControle.Infra.Contextos;
@@ -18,7 +19,8 @@ namespace MeuControle.Infra.Repositorios
             _contexto.SaveChanges();
         }
 
-        public Usuario ObterUsuarioPorEmailSenha(string email, string senha) => _contexto.Usuarios.AsNoTracking()
-            .FirstOrDefault(x => x.Email == email && x.Senha == senha);
+        public async Task<Usuario> ObterUsuarioPorEmailSenha(string email, string senha) => await _contexto.Usuarios
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Email == email && x.Senha == senha);
     }
 }

@@ -4,7 +4,6 @@ using MeuControle.Dominio.Comandos.UsuarioComando;
 using MeuControle.Dominio.Compartilhado.Contratos;
 using MeuControle.Dominio.Entidades;
 using MeuControle.Dominio.Manipuladores;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeuControle.Api.Controllers
@@ -15,18 +14,18 @@ namespace MeuControle.Api.Controllers
     {
         [Route("")]
         [HttpPost]
-        public GenericoComandoResultado Criar(
+        public async Task<ActionResult<GenericoComandoResultado>> Criar(
             [FromBody] CriarUsuarioComando comando,
             [FromServices] UsuarioManipulador manipulador) 
-            => (GenericoComandoResultado)manipulador.Manipular(comando);
+            => await manipulador.Manipular(comando);
 
         [Route("login")]
         [HttpPost]
-        public ActionResult<dynamic> Autenticar(
+        public async Task<ActionResult<dynamic>> Autenticar(
             [FromBody] AutenticarUsuarioComando comando,
             [FromServices] UsuarioManipulador manipulador)
         {
-            var usuarioExistente = (GenericoComandoResultado)manipulador.Manipular(comando);
+            var usuarioExistente = await manipulador.Manipular(comando);
 
             if (!usuarioExistente.Sucesso)
                 return NotFound(new { message = "Usuário ou senha inválidos." });
