@@ -23,7 +23,7 @@ namespace MeuControle.Dominio.Manipuladores
             if (comando.Invalid)
                 return new GenericoComandoResultado(false, "Ops, parece que o usuário está incorreto.", comando.Notifications);
 
-            var usuario = new Usuario(comando.Nome, comando.Email, comando.Senha);
+            var usuario = new Usuario(comando.Nome, comando.Email, comando.Senha, comando.RendaMensal);
 
             _repositorio.Criar(usuario);
 
