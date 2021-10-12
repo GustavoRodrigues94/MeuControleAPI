@@ -1890,7 +1890,7 @@
       },
       "MeuControle.Dominio/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
+        "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Flunt": "1.0.5",
           "System.ComponentModel.Annotations": "5.0.0"
@@ -1904,7 +1904,7 @@
       },
       "MeuControle.Infra/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
+        "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "MeuControle.Dominio": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.0",
