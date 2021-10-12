@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using MeuControle.Dominio.Consultas.IndicadorConsultas;
+using MeuControle.Dominio.Consultas.IndicadorConsultas.ViewModels;
 
 namespace MeuControle.Api.Controllers
 {
@@ -12,6 +15,13 @@ namespace MeuControle.Api.Controllers
     [Route("v1/Indicador")]
     public class IndicadorController : ControllerBase
     {
+        private readonly IIndicadorConsulta _indicadorConsulta;
+
+        public IndicadorController(IIndicadorConsulta indicadorConsulta)
+        {
+            _indicadorConsulta = indicadorConsulta;
+        }
+
         [Authorize]
         [Route("Saldo/{usuario}/{filtroMes}")]
         [HttpGet]
@@ -27,7 +37,7 @@ namespace MeuControle.Api.Controllers
         [Authorize]
         [Route("Top5Gastos/{usuario}/{filtroMes}")]
         [HttpGet]
-        public IList<IndicadorTop5PlanosSaidas> ObterIndicadorTop5PlanosSaidas([FromServices] IIndicadorRepositorio repositorio, Guid usuario, FiltroMes filtroMes)
-            => repositorio.ObterIndicadorTop5PlanosSaidas(usuario, filtroMes);
+        public async Task<IEnumerable<IndicadorTop5PlanosSaidasViewModel>> ObterIndicadorTop5PlanosSaidas(Guid usuario, FiltroMes filtroMes)
+            => await _indicadorConsulta.ObterIndicadorTop5PlanosSaidas(usuario, filtroMes);
     }
 }

@@ -1602,6 +1602,7 @@
       "MeuControle.Dominio/1.0.0": {
         "dependencies": {
           "Flunt": "1.0.5",
+          "Microsoft.EntityFrameworkCore": "5.0.0",
           "System.ComponentModel.Annotations": "5.0.0"
         },
         "runtime": {

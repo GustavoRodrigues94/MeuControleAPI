@@ -57,35 +57,5 @@ namespace MeuControle.Infra.Repositorios
                     return 0;
             }
         }
-
-        public IList<IndicadorTop5PlanosSaidas> ObterIndicadorTop5PlanosSaidas(Guid usuario, FiltroMes filtroMes)
-        {
-            var listaIndicadorTop5PlanosSaidas = new List<IndicadorTop5PlanosSaidas>();
-            var planosSaidaAgrupados = _contexto.LancamentosContas
-                                              .Include(p => p.PlanoConta)
-                                              .AsNoTracking()
-                                              .Where(l => l.CodigoUsuario == usuario 
-                                                    && l.DataLancamento >= ControleDeDatas.RetornarDatas(filtroMes, true) 
-                                                    && l.DataLancamento <= ControleDeDatas.RetornarDatas(filtroMes, false)).ToList()
-                                              .Where(p => p.Operacao == 's')
-                                              .Select(c => new { c.Valor, c.CodigoPlanoConta, c.PlanoConta.Nome })
-                                              .GroupBy(c => c.CodigoPlanoConta, (k, g) => new IndicadorTop5PlanosSaidas
-                                              {
-                                                  NomePlanoConta = g.Select(b => b.Nome).FirstOrDefault(),
-                                                  Valor = g.Sum(b => b.Valor)
-                                              })
-                                              .OrderByDescending(g => g.Valor).ToList();
-
-            if (planosSaidaAgrupados?.Count > 5)
-            {
-                listaIndicadorTop5PlanosSaidas.AddRange(planosSaidaAgrupados.Take(4));
-                planosSaidaAgrupados.RemoveRange(0, 4);
-                listaIndicadorTop5PlanosSaidas.Add(new IndicadorTop5PlanosSaidas { NomePlanoConta = "Outras saídas", Valor = planosSaidaAgrupados.Sum(p => p.Valor) });
-            }
-            else
-                listaIndicadorTop5PlanosSaidas = planosSaidaAgrupados;
-
-            return listaIndicadorTop5PlanosSaidas;
-        }
     }
 }

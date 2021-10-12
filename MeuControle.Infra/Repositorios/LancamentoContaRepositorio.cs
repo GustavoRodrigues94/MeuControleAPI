@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using MeuControle.Dominio.Consultas.IndicadorConsultas.ViewModels;
 
 namespace MeuControle.Infra.Repositorios
 {
@@ -32,5 +34,27 @@ namespace MeuControle.Infra.Repositorios
                                                                                                             .Select(l => new LancamentoConta { PlanoConta = l.PlanoConta, DataLancamento = l.DataLancamento, Valor = l.Valor })
                                                                                                             .OrderBy(l => l.DataLancamento)
                                                                                                             .ToList();
+
+        public async Task<List<IndicadorTop5PlanosSaidasViewModel>> ObterLancamentosPorPeriodoAgrupado(Guid usuario,
+            FiltroMes filtroMes, char entradaOuSaida)
+        {
+            var lancamentosAgrupados = await _contexto.LancamentosContas
+                .Include(p => p.PlanoConta)
+                .Where(p => p.Operacao == entradaOuSaida)
+                .AsNoTrackingWithIdentityResolution()
+                .Where(l => l.CodigoUsuario == usuario
+                            && l.DataLancamento >= ControleDeDatas.RetornarDatas(filtroMes, true)
+                            && l.DataLancamento <= ControleDeDatas.RetornarDatas(filtroMes, false)).ToListAsync();
+
+            return lancamentosAgrupados.Select(c => new {c.Valor, c.CodigoPlanoConta, c.PlanoConta.Nome})
+                .GroupBy(c => c.CodigoPlanoConta, (k, g) => new IndicadorTop5PlanosSaidasViewModel
+                {
+                    NomePlanoConta = g.Select(b => b.Nome).FirstOrDefault(),
+                    Valor = g.Sum(b => b.Valor)
+                })
+                .OrderByDescending(g => g.Valor)
+                .ToList();
+        }
+            
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using MeuControle.Dominio.Consultas.IndicadorConsultas;
 using MeuControle.Dominio.Manipuladores;
 using MeuControle.Dominio.Repositorios;
 using MeuControle.Infra.Contextos;
@@ -74,6 +75,7 @@ namespace MeuControle.Api
             services.AddTransient<LancamentoContaManipulador, LancamentoContaManipulador>();
 
             services.AddTransient<IIndicadorRepositorio, IndicadorRepositorio>();
+            services.AddTransient<IIndicadorConsulta, IndicadorConsulta>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

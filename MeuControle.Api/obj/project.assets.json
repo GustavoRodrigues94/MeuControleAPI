@@ -1893,6 +1893,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Flunt": "1.0.5",
+          "Microsoft.EntityFrameworkCore": "5.0.0",
           "System.ComponentModel.Annotations": "5.0.0"
         },
         "compile": {
