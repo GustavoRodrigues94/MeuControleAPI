@@ -1,9 +1,0 @@
-C:\MeuControle\meucontrole_api\MeuControle.Dominio\bin\Debug\netstandard2.0\MeuControle.Dominio.deps.json
-C:\MeuControle\meucontrole_api\MeuControle.Dominio\bin\Debug\netstandard2.0\MeuControle.Dominio.dll
-C:\MeuControle\meucontrole_api\MeuControle.Dominio\obj\Debug\netstandard2.0\MeuControle.Dominio.csprojAssemblyReference.cache
-C:\MeuControle\meucontrole_api\MeuControle.Dominio\obj\Debug\netstandard2.0\MeuControle.Dominio.AssemblyInfoInputs.cache
-C:\MeuControle\meucontrole_api\MeuControle.Dominio\obj\Debug\netstandard2.0\MeuControle.Dominio.AssemblyInfo.cs
-C:\MeuControle\meucontrole_api\MeuControle.Dominio\bin\Debug\netstandard2.0\MeuControle.Dominio.pdb
-C:\MeuControle\meucontrole_api\MeuControle.Dominio\obj\Debug\netstandard2.0\MeuControle.Dominio.dll
-C:\MeuControle\meucontrole_api\MeuControle.Dominio\obj\Debug\netstandard2.0\MeuControle.Dominio.pdb
-C:\MeuControle\meucontrole_api\MeuControle.Dominio\obj\Debug\netstandard2.0\MeuControle.Dominio.csproj.CoreCompileInputs.cache
