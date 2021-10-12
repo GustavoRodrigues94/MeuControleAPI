@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MeuControle.Dominio.Comandos.PlanoContaComando;
 using MeuControle.Dominio.Compartilhado.Contratos;
 using MeuControle.Dominio.Entidades;
@@ -17,11 +18,11 @@ namespace MeuControle.Api.Controllers
         [Authorize]
         [Route("")]
         [HttpPost]
-        public ActionResult<PlanoConta> Criar(
+        public async Task<ActionResult<PlanoConta>> Criar(
             [FromBody] CriarPlanoContaComando comando,
             [FromServices] PlanoContaManipulador manipulador)
         {
-            var resultado = (GenericoComandoResultado) manipulador.Manipular(comando);
+            var resultado = await manipulador.Manipular(comando);
 
             if (resultado.Sucesso)
                 return Ok(resultado.Dado);
@@ -32,18 +33,18 @@ namespace MeuControle.Api.Controllers
         [Authorize]
         [Route("")]
         [HttpPut]
-        public GenericoComandoResultado Atualizar(
+        public async Task<ActionResult<GenericoComandoResultado>> Atualizar(
             [FromBody] AtualizarPlanoContaComando comando,
             [FromServices] PlanoContaManipulador manipulador) 
-            => (GenericoComandoResultado)manipulador.Manipular(comando);
+            => await manipulador.Manipular(comando);
 
         [Authorize]
         [Route("{usuario}/{planoConta}")]
         [HttpDelete]
-        public GenericoComandoResultado Deletar(
+        public async Task<ActionResult<GenericoComandoResultado>> Deletar(
             [FromServices] PlanoContaManipulador manipulador,
             Guid usuario, Guid planoConta) 
-            => (GenericoComandoResultado)manipulador.Manipular(new DeletarPlanoContaComando(planoConta, usuario));
+            => await manipulador.Manipular(new DeletarPlanoContaComando(planoConta, usuario));
 
         [Authorize]
         [Route("{usuario}")]

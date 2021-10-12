@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MeuControle.Dominio.Entidades;
 using MeuControle.Dominio.Repositorios;
 using MeuControle.Infra.Contextos;

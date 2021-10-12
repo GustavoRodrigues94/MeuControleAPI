@@ -1,4 +1,5 @@
-﻿using Flunt.Notifications;
+﻿using System.Threading.Tasks;
+using Flunt.Notifications;
 using MeuControle.Dominio.Comandos.PlanoContaComando;
 using MeuControle.Dominio.Compartilhado.Contratos;
 using MeuControle.Dominio.Entidades;
@@ -17,7 +18,7 @@ namespace MeuControle.Dominio.Manipuladores
 
         public PlanoContaManipulador(IPlanoContaRepositorio repositorio) => _repositorio = repositorio;
 
-        public IComandoResultado Manipular(CriarPlanoContaComando comando)
+        public async Task<GenericoComandoResultado> Manipular(CriarPlanoContaComando comando)
         {
             comando.Validate();
 
@@ -31,7 +32,7 @@ namespace MeuControle.Dominio.Manipuladores
             return new GenericoComandoResultado(true, "Plano de conta salvo", planoConta);
         }
 
-        public IComandoResultado Manipular(DeletarPlanoContaComando comando)
+        public async Task<GenericoComandoResultado> Manipular(DeletarPlanoContaComando comando)
         {
             comando.Validate();
 
@@ -48,7 +49,7 @@ namespace MeuControle.Dominio.Manipuladores
             return new GenericoComandoResultado(true, "Plano de conta deletado", planoConta);
         }
 
-        public IComandoResultado Manipular(AtualizarPlanoContaComando comando)
+        public async Task<GenericoComandoResultado> Manipular(AtualizarPlanoContaComando comando)
         {
             comando.Validate();
 

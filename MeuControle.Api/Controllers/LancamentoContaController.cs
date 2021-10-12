@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MeuControle.Api.Controllers
 {
@@ -18,10 +19,10 @@ namespace MeuControle.Api.Controllers
         [Authorize]
         [Route("")]
         [HttpPost]
-        public GenericoComandoResultado Criar(
+        public async Task<ActionResult<GenericoComandoResultado>> Criar(
             [FromBody] CriarLancamentoContaComando comando,
             [FromServices] LancamentoContaManipulador manipulador)
-            => (GenericoComandoResultado)manipulador.Manipular(comando);
+            => await manipulador.Manipular(comando);
 
 
         [Route("{usuario}/{filtroDias}")]

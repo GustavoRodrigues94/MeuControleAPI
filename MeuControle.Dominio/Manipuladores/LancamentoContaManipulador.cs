@@ -1,4 +1,5 @@
-﻿using Flunt.Notifications;
+﻿using System.Threading.Tasks;
+using Flunt.Notifications;
 using MeuControle.Dominio.Comandos.LancamentoContaComando;
 using MeuControle.Dominio.Compartilhado.Contratos;
 using MeuControle.Dominio.Entidades;
@@ -14,7 +15,7 @@ namespace MeuControle.Dominio.Manipuladores
 
         public LancamentoContaManipulador(ILancamentoContaRepositorio repositorio) => _repositorio = repositorio;
 
-        public IComandoResultado Manipular(CriarLancamentoContaComando comando)
+        public async Task<GenericoComandoResultado> Manipular(CriarLancamentoContaComando comando)
         {
             comando.Validate();
 
