@@ -8,7 +8,7 @@ namespace MeuControle.Dominio.Comandos.UsuarioComando
     {
         public CriarUsuarioComando() { }
 
-        public CriarUsuarioComando(string nome, string email, string senha, decimal rendaMensal)
+        public CriarUsuarioComando(string nome, decimal rendaMensal, string email, string senha)
         {
             Nome = nome;
             Email = email;

@@ -5,6 +5,8 @@ namespace MeuControle.Dominio.Entidades
 {
     public class Usuario : Entidade
     {
+        protected Usuario() { }
+
         public Usuario(string nome, string email, string senha, decimal rendaMensal)
         {
             Nome = nome;
